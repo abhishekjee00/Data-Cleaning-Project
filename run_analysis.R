@@ -49,11 +49,14 @@ run_analysis <- function() {
   rm(merged_data)
   
   ## Prepare the final merged data containing mean and standard deviation value
-  merged_data_df %>% 
+  merged_data_summary <- merged_data_df %>% 
     select(Activity.Name, Set, contains("mean"), contains("std")) %>%
     group_by(Activity.Name, Set) %>%
     summarize(tBodyAcc.mean.X = mean(tBodyAcc.mean...X, na.rm = TRUE),
               tBodyAcc.mean.Y = mean(tBodyAcc.mean...Y, na.rm = TRUE),
               tBodyAcc.mean.Z = mean(tBodyAcc.mean...Z, na.rm = TRUE)) %>%
-    print  
+    print
+  
+  write.table(merged_data_summary, "final.txt", row.name = FALSE)
+  
 }

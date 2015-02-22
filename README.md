@@ -43,17 +43,16 @@ Now the final data is ready meeting the criteria
 
 The merged_data is now loaded into "data frame table using tbl_df. Now using the chaining (%>%) command following commands are executed
 
-  merged_data_df %>% 
+merged_data_summary <- merged_data_df %>% 
     select(Activity.Name, Set, contains("mean"), contains("std")) %>%
     group_by(Activity.Name, Set) %>%
     summarize(tBodyAcc.mean.X = mean(tBodyAcc.mean...X, na.rm = TRUE),
               tBodyAcc.mean.Y = mean(tBodyAcc.mean...Y, na.rm = TRUE),
               tBodyAcc.mean.Z = mean(tBodyAcc.mean...Z, na.rm = TRUE)) %>%
-    print  
+    print
 
 The "contains" function allows to select variables which has mean and std in its name. Secondly, while computing the average na.rm = TRUE is used in the mean function to ignore NA cases
 
 ### Note
 
 The code restricts to tBodyAcc.mean.X, tBodyAcc.mean.Y and tBodyAcc.mean.Z variables only and the code can be extended to load other variables as they are available in the data frame.
-
